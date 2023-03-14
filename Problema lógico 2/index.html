@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Lógico 2</title>
+</head>
+<body>
+Quantidade de dias que entrou no sistema <input type="number" min="0" max="7" id="days"> <br> <br>
+Tarefas da semana <input id='numbertasks'> <br> <br>
+Tarefas concluídas com atraso <input id="badtasks"> <br> <br>
+<button id="button">Verificar pontuação</button>
+<br>
+<br>
+<p>Pontos: <b id="score"> </b></p>
+</body>
+<script>
+const button = document.getElementById('button')
+var sum = 0
+
+const showScore = () => {
+const days = document.getElementById('days').value
+const scoreSum = document.getElementById('score')
+const numbertasks = document.getElementById('numbertasks').value
+const badtasks = document.getElementById('badtasks').value
+
+if (numbertasks == badtasks) {
+    sum = sum + 5
+} else if (badtasks == 0) {
+   sum = sum + 20
+} else {
+   sum = sum + 10
+}
+
+if (days == 7 ) {
+    scoreSum.innerHTML = 10 + sum
+} else if (days < 5) {
+    scoreSum.innerHTML = 0.5*days + sum
+} else {
+    scoreSum.innerHTML = 1*days + sum
+}
+
+}
+
+button.addEventListener('click', showScore)
+
+</script>
+</html>

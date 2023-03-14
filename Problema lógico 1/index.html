@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste lógico 1</title>
+    <style>
+        h1 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        p {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 30px;
+        }
+
+        #container {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    Nome: <input type="text" name="nome" placeholder="digite seu Nome aqui" id="name"> <br><br>
+    Idade: <input type="number" name="idade" placeholder="digite sua idade aqui" id="age"> <br><br>
+    Data de entrada na empresa: <input type="date" name="nascimento" id="date"> <br><br>
+    <button id="button"> Enviar </button>
+
+    <div id="container">
+        <p> <b id="name-change">Giovani</b> é <b id="age-change">maior</b> de idade. <br> Você está na empresa a <b
+                id='changedate'>mais</b> de 6 meses.<br> Você tem <b id="age-number"> menos que</b> 40 anos de idade.
+        </p>
+        <h1> Você <b id="empresa">pode </b> ser cadastrado na empresa!</h1>
+    </div>
+    <div id="container2">
+
+    </div>
+    <script>
+        const button = document.getElementById('button')
+        var container = document.getElementById("container")
+        var container2 = document.getElementById("container2")
+
+        const ShowInfo = () => {
+            const inputName = document.getElementById('name').value
+            const nameChange = document.getElementById('name-change')
+            const inputAge = document.getElementById('age').value
+            const ageChange = document.getElementById('age-change')
+            const ageNumber = document.getElementById('age-number')
+            const dateChange = document.getElementById('changedate')
+            const empresa = document.getElementById('empresa')
+            const inputDate = document.getElementById('date').value
+            const now = new Date()
+            const past = new Date(inputDate)
+            const diff = Math.abs(now.getTime() - past.getTime())
+            const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
+
+            nameChange.innerHTML = inputName
+
+            if (days < 180) {
+                dateChange.innerHTML = "menos"
+            } else {
+                dateChange.innerHTML = "mais"
+            }
+
+            if (inputAge < 18) {
+                ageChange.innerHTML = "menor"
+            } else {
+                ageChange.innerHTML = "maior"
+            }
+
+            if (inputAge == 40) {
+                ageNumber.innerHTML = ""
+            } else if (inputAge > 40) {
+                ageNumber.innerHTML = "mais que"
+            } else {
+                ageNumber.innerHTML = "menos que"
+            }
+
+            if (days < 180 || inputAge < 18 || inputAge > 40) {
+                empresa.innerHTML = 'não pode'
+            } else {
+                empresa.innerHTML = 'pode'
+            }
+
+            if (container.style.display === "none") {
+                container.style.display = "block"
+                container2.style.display = "none"
+            } else {
+                container.style.display = "none"
+              
+            }
+
+        }
+
+        button.addEventListener('click', ShowInfo)
+
+
+    </script>
+
+
+</body>
+
+</html>
